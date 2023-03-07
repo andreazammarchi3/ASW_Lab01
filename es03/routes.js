@@ -16,6 +16,7 @@ const requestHandler = (req, res) => {
             const parsedBody = Buffer.concat(body).toString();
             console.log(parsedBody);
         });
+        res.writeHead(302, {'Location': '/'});
         res.end();
     }
 }
