@@ -8,6 +8,9 @@ app.set('view engine', 'pug');
 app.use(express.urlencoded());
 app.use(express.static('public'));
 
+app.locals.title = "My web site";
+app.locals.email = "io@me.it";
+
 app.use('/ciao', (req, res) => {
     // req.body;
     res.send('<h1>Ciao express</h1>');
@@ -30,7 +33,11 @@ app.get('/sayhello/:name', (req, res) => {
 });
 
 app.get('/tehello/:name', (req, res) => {
-    res.render("hello", {name: req.params.name});
+    res.render("hello", {
+        name: req.params.name,
+        title: app.locals.title,
+        email: app.locals.email
+    });
 });
 
 app.get('/conta/:numero', (req, res) => {
