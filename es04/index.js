@@ -24,6 +24,13 @@ app.get('/contacts', (req, res) => {
     res.sendFile(__dirname + '/public/contacts-no-css.html');
 });
 
+app.get('/sayhello/:name', (req, res) => {
+    res.send("Hello " + req.params.name + "!");
+});
+
+
+
+
 app.use((req, res)=>{
     res.setHeader('Content-Type', 'text/plain');
     res.status(404).send('Ops... Pagina non trovata');
