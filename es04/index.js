@@ -5,7 +5,9 @@ const colors = require('./colors.json');
 
 app.use(express.urlencoded());
 
-app.use('/ciao', (req, res, next) => {
+app.use(express.static('public'));
+
+app.use('/ciao', (req, res) => {
     // req.body;
     res.send('<h1>Ciao express</h1>');
 });
@@ -18,7 +20,11 @@ app.get('/colors', (req, res) => {
     res.json(colors);
 });
 
-app.use((req, res, next)=>{
+app.get('/contacts', (req, res) => {
+    res.sendFile(__dirname + '/public/contacts-no-css.html');
+});
+
+app.use((req, res)=>{
     res.setHeader('Content-Type', 'text/plain');
     res.status(404).send('Ops... Pagina non trovata');
 });
