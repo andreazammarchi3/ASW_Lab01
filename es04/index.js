@@ -3,8 +3,9 @@ const app = express();
 
 const colors = require('./colors.json');
 
-app.use(express.urlencoded());
+app.set('view engine', 'pug');
 
+app.use(express.urlencoded());
 app.use(express.static('public'));
 
 app.use('/ciao', (req, res) => {
@@ -26,6 +27,18 @@ app.get('/contacts', (req, res) => {
 
 app.get('/sayhello/:name', (req, res) => {
     res.send("Hello " + req.params.name + "!");
+});
+
+app.get('/tehello/:name', (req, res) => {
+    res.render("hello", {name: req.params.name});
+});
+
+app.get('/conta/:numero', (req, res) => {
+    nums = [];
+    for (let i = 0; i <= req.params.numero; i++) {
+        nums.push(i);
+    }
+    res.render("visualizza_numeri", {numeri: nums});
 });
 
 
